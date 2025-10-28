@@ -1,10 +1,13 @@
-IMAGE_ID ?= kjarosh/latex
+# Cambia questo con il tuo username su Docker Hub / GHCR
+IMAGE_ID ?= your-username/latex-ubuntu
 VERSION ?= latest
 
 TL_MIRROR ?= https://texlive.info/CTAN/systems/texlive/tlnet
 
 _default: all
 
+# I comandi 'docker build' ora usano implicitamente il nostro nuovo Dockerfile.
+# Non c'è più bisogno del flag '-f'.
 all: minimal basic small medium full
 
 minimal:
