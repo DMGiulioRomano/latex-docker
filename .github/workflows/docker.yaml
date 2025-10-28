@@ -30,7 +30,7 @@ jobs:
 
       - name: Prepare configuration
         run: |
-          IMAGE_ID=${{ github.repository_owner }}/latex
+          IMAGE_ID=${{ github.repository_owner }}/latex-docker-ubuntu
 
           if [[ "${{ github.event_name }}" == "schedule" && "${{ github.event.schedule }}" == "12 4 * * *" ]]; then
             DATE=$(date '+%Y%m%d')
