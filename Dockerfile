@@ -1,13 +1,13 @@
-# CAMBIATO: Base image ora è Ubuntu 22.04 LTS (Long-Term Support)
+# Base image è ora Ubuntu 22.04 LTS (Long-Term Support)
 FROM ubuntu:22.04
 
-# installation settings
+# Impostazioni di installazione
 ARG TL_MIRROR="https://texlive.info/CTAN/systems/texlive/tlnet"
 
-#    - 'DEBIAN_FRONTEND=noninteractive' evita che apt-get faccia domande.
-#    - '--no-install-recommends' mantiene l'immagine più piccola.
-#    - Aggiunto 'wget' che è usato nello script, 'ca-certificates' per connessioni sicure.
-#    - Mantenuti 'perl', 'fontconfig', 'gnupg'.
+# Usa 'apt-get' per installare le dipendenze di base per Ubuntu.
+# - 'DEBIAN_FRONTEND=noninteractive' evita che apt-get faccia domande.
+# - '--no-install-recommends' mantiene l'immagine più leggera.
+# - 'apt-get clean' e 'rm' puliscono la cache per ridurre le dimensioni finali.
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     wget \
@@ -17,6 +17,8 @@ RUN apt-get update && \
     ca-certificates \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# La logica di installazione di TeX Live è robusta e viene mantenuta.
+# Funziona perfettamente anche su Ubuntu.
 RUN mkdir "/tmp/texlive" && cd "/tmp/texlive" && \
     wget "$TL_MIRROR/install-tl-unx.tar.gz" && \
     tar xzvf ./install-tl-unx.tar.gz && \
@@ -36,10 +38,10 @@ RUN mkdir "/tmp/texlive" && cd "/tmp/texlive" && \
     rm -vf "/opt/texlive/install-tl.log" && \
     rm -vrf /tmp/*
 
-# Il path per i binari su Ubuntu (glibc) è diverso da Alpine (musl).
-#    Sostituito 'x86_64-linuxmusl' con 'x86_64-linux'. Questo è un punto CRUCIALE.
+# PUNTO CRUCIALE: Corretto il PATH per i binari su architettura Ubuntu (glibc).
 ENV PATH="${PATH}:/opt/texlive/bin/x86_64-linux"
 
+# La logica per l'installazione incrementale degli schemi viene mantenuta.
 ARG TL_SCHEME_BASIC="y"
 RUN if [ "$TL_SCHEME_BASIC" = "y" ]; then tlmgr install scheme-basic; fi
 
