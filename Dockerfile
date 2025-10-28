@@ -1,10 +1,23 @@
-FROM alpine:3.22.1
+# CAMBIATO: Base image ora è Ubuntu 22.04 LTS (Long-Term Support)
+FROM ubuntu:22.04
 
 # installation settings
 ARG TL_MIRROR="https://texlive.info/CTAN/systems/texlive/tlnet"
 
-RUN apk add --no-cache perl curl fontconfig libgcc gnupg && \
-    mkdir "/tmp/texlive" && cd "/tmp/texlive" && \
+#    - 'DEBIAN_FRONTEND=noninteractive' evita che apt-get faccia domande.
+#    - '--no-install-recommends' mantiene l'immagine più piccola.
+#    - Aggiunto 'wget' che è usato nello script, 'ca-certificates' per connessioni sicure.
+#    - Mantenuti 'perl', 'fontconfig', 'gnupg'.
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    wget \
+    perl \
+    fontconfig \
+    gnupg \
+    ca-certificates \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir "/tmp/texlive" && cd "/tmp/texlive" && \
     wget "$TL_MIRROR/install-tl-unx.tar.gz" && \
     tar xzvf ./install-tl-unx.tar.gz && \
     ( \
@@ -23,7 +36,9 @@ RUN apk add --no-cache perl curl fontconfig libgcc gnupg && \
     rm -vf "/opt/texlive/install-tl.log" && \
     rm -vrf /tmp/*
 
-ENV PATH="${PATH}:/opt/texlive/bin/x86_64-linuxmusl"
+# Il path per i binari su Ubuntu (glibc) è diverso da Alpine (musl).
+#    Sostituito 'x86_64-linuxmusl' con 'x86_64-linux'. Questo è un punto CRUCIALE.
+ENV PATH="${PATH}:/opt/texlive/bin/x86_64-linux"
 
 ARG TL_SCHEME_BASIC="y"
 RUN if [ "$TL_SCHEME_BASIC" = "y" ]; then tlmgr install scheme-basic; fi
