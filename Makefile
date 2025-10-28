@@ -1,5 +1,5 @@
 # Cambia questo con il tuo username su Docker Hub / GHCR
-IMAGE_ID ?= your-username/latex-ubuntu
+IMAGE_ID ?= DMGiulioRomano/latex-docker-ubuntu
 VERSION ?= latest
 
 TL_MIRROR ?= https://texlive.info/CTAN/systems/texlive/tlnet
