@@ -19,8 +19,7 @@ They come in several flavors, which correspond to TeX Live schemes
 The default scheme is `full` which contains all packages.
 
 If some package is missing you can always use `tlmgr` to install it.
-The image is based on [`alpine`](https://alpinelinux.org/), so system packages
-may be installed using `apk`.
+The image is based on **Ubuntu**, so system packages may be installed using apt-get.
 
 | Scheme  | Image                          | Size    |
 |---------|--------------------------------|---------|
@@ -61,7 +60,7 @@ for detailed usage and options.
 If you don't want to use `latexmk` you are free to issue any command you want
 (`latex`, `pdflatex`, `xelatex`, etc.) and it should just work.
 For more complex building processes, using a building tool such as `make` is advised.
-In that case you'll need to install it by issuing `apk add make` inside the container.
+In that case you'll need to install it by issuing apt-get update && apt-get install -y make inside the container.
 
 ## Versions
 
