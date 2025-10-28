@@ -1,6 +1,6 @@
 services:
   sut:
-    image: alpine
+    image: ubuntu:22.04
     command: "true"
     depends_on:
       sut-minimal:
@@ -9,29 +9,29 @@ services:
         condition: service_completed_successfully
 
   sut-minimal:
-    image: alpine
+    image: ubuntu:22.04
     command: "true"
     depends_on:
       sut-minimal-1:
         condition: service_completed_successfully
 
   sut-basic:
-    image: alpine
+    image: ubuntu:22.04
     command: "true"
     depends_on:
       sut-basic-1:
         condition: service_completed_successfully
 
   sut-small:
-    image: alpine
+    image: ubuntu:22.04
     command: "true"
 
   sut-medium:
-    image: alpine
+    image: ubuntu:22.04
     command: "true"
 
   sut-full:
-    image: alpine
+    image: ubuntu:22.04
     command: "true"
 
   sut-minimal-1:
