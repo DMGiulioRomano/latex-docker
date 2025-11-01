@@ -39,7 +39,8 @@ RUN mkdir "/tmp/texlive" && cd "/tmp/texlive" && \
     rm -vrf /tmp/*
 
 # PUNTO CRUCIALE: Corretto il PATH per i binari su architettura Ubuntu (glibc).
-ENV PATH="${PATH}:/opt/texlive/bin/x86_64-linux"
+#ENV PATH="${PATH}:/opt/texlive/bin/x86_64-linux"
+ENV PATH="${PATH}:/opt/texlive/bin/*"
 
 # La logica per l'installazione incrementale degli schemi viene mantenuta.
 ARG TL_SCHEME_BASIC="y"

@@ -39,69 +39,35 @@ services:
     command: |
       sh -c '
       set -e
-
       # check if some basic commands work
       tlmgr --version
       pdftex -v
       tex -v
       bibtex -v
-
       # check if installation works correctly
       latexmk -v && exit 1
       tlmgr install latexmk
       latexmk -v || exit 1
-
       echo Tests passed!
       '
-      
+
   sut-basic-1:
     image: ${IMAGE_ID}:${VERSION}-basic
     command: |
-      sh -c '
-      set -ex
+      bash -c '
+      set -e
       cd /tmp
 
-      echo "=== STEP 1: Verifica ambiente base ==="
-      pwd
-      ls -la
-      whoami
-      
-      echo "=== STEP 2: Verifica connessione di rete ==="
-      cat /etc/resolv.conf
-      ping -c 2 ctan.mirror.garr.it || echo "Ping failed but continuing..."
-      nslookup ctan.mirror.garr.it || echo "DNS lookup failed but continuing..."
-      
-      echo "=== STEP 3: Verifica tlmgr ==="
-      which tlmgr
-      tlmgr --version
-      echo "PATH: $PATH"
-      
-      echo "=== STEP 4: Verifica repository configurato ==="
-      tlmgr option repository
-      
-      echo "=== STEP 5: Test download diretto ==="
-      wget --timeout=30 --tries=2 https://ctan.mirror.garr.it/mirrors/ctan/systems/texlive/tlnet/archive/latexmk.tar.xz -O /tmp/latexmk.tar.xz
-      echo "wget exit code: $?"
-      ls -la /tmp/latexmk.tar.xz || echo "File non scaricato"
-      
-      echo "=== STEP 6: Aggiorna repository ==="
-      tlmgr option repository https://ctan.mirror.garr.it/mirrors/ctan/systems/texlive/tlnet/
-      tlmgr option repository
-      
-      echo "=== STEP 7: Prova installazione latexmk ==="
-      tlmgr install latexmk --verify-repo=n --dry-run
-      tlmgr install latexmk --verify-repo=n
-      echo "tlmgr install exit code: $?"
-      
-      echo "=== STEP 8: Test compilazione ==="
       echo "\documentclass[12pt]{article}" > main.tex
       echo "\begin{document}" >> main.tex
       echo "test" >> main.tex
       echo "\end{document}" >> main.tex
-      
-      latexmk -pdf main.tex
-      ls -la main.pdf
 
-      echo "✅ TUTTI I TEST PASSATI!"
+      cat main.tex
+
+      tlmgr install latexmk
+      latexmk -pdf main.tex
+      ls main.pdf
+
+      echo Tests passed!
       '
-    network_mode: "bridge"  # Forza la rete di default
