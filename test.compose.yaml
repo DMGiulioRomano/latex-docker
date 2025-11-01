@@ -61,25 +61,39 @@ services:
       set -ex
       cd /tmp
 
-      echo "=== STEP 1: Verifica ambiente ==="
+      echo "=== STEP 1: Verifica ambiente base ==="
+      pwd
+      ls -la
+      whoami
+      
+      echo "=== STEP 2: Verifica connessione di rete ==="
+      cat /etc/resolv.conf
+      ping -c 2 mirror.ctan.org || echo "Ping failed but continuing..."
+      nslookup mirror.ctan.org || echo "DNS lookup failed but continuing..."
+      
+      echo "=== STEP 3: Verifica tlmgr ==="
       which tlmgr
       tlmgr --version
       echo "PATH: $PATH"
-
-      echo "=== STEP 2: Verifica repository corrente ==="
+      
+      echo "=== STEP 4: Verifica repository configurato ==="
       tlmgr option repository
       
-      echo "=== STEP 3: Test connessione al repository ==="
-      wget --spider https://mirror.ctan.org/systems/texlive/tlnet/archive/latexmk.tar.xz
+      echo "=== STEP 5: Test download diretto ==="
+      wget --timeout=30 --tries=2 https://mirror.ctan.org/systems/texlive/tlnet/archive/latexmk.tar.xz -O /tmp/latexmk.tar.xz
       echo "wget exit code: $?"
-
-      echo "=== STEP 4: Aggiorna repository configuration ==="
+      ls -la /tmp/latexmk.tar.xz || echo "File non scaricato"
+      
+      echo "=== STEP 6: Aggiorna repository ==="
       tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet/
+      tlmgr option repository
       
-      echo "=== STEP 5: Prova installazione latexmk ==="
+      echo "=== STEP 7: Prova installazione latexmk ==="
+      tlmgr install latexmk --verify-repo=n --dry-run
       tlmgr install latexmk --verify-repo=n
+      echo "tlmgr install exit code: $?"
       
-      echo "=== STEP 6: Test compilazione ==="
+      echo "=== STEP 8: Test compilazione ==="
       echo "\documentclass[12pt]{article}" > main.tex
       echo "\begin{document}" >> main.tex
       echo "test" >> main.tex
@@ -88,5 +102,6 @@ services:
       latexmk -pdf main.tex
       ls -la main.pdf
 
-      echo "✅ Tutti i test passati!"
+      echo "✅ TUTTI I TEST PASSATI!"
       '
+    network_mode: "bridge"  # Forza la rete di default
