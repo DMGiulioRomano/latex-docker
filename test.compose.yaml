@@ -53,23 +53,40 @@ services:
 
       echo Tests passed!
       '
+      
   sut-basic-1:
     image: ${IMAGE_ID}:${VERSION}-basic
     command: |
       sh -c '
-      set -e
+      set -ex
       cd /tmp
 
+      echo "=== STEP 1: Verifica ambiente ==="
+      which tlmgr
+      tlmgr --version
+      echo "PATH: $PATH"
+
+      echo "=== STEP 2: Verifica repository corrente ==="
+      tlmgr option repository
+      
+      echo "=== STEP 3: Test connessione al repository ==="
+      wget --spider https://mirror.ctan.org/systems/texlive/tlnet/archive/latexmk.tar.xz
+      echo "wget exit code: $?"
+
+      echo "=== STEP 4: Aggiorna repository configuration ==="
+      tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet/
+      
+      echo "=== STEP 5: Prova installazione latexmk ==="
+      tlmgr install latexmk --verify-repo=n
+      
+      echo "=== STEP 6: Test compilazione ==="
       echo "\documentclass[12pt]{article}" > main.tex
       echo "\begin{document}" >> main.tex
       echo "test" >> main.tex
       echo "\end{document}" >> main.tex
-
-      cat main.tex
-
-      tlmgr install latexmk
+      
       latexmk -pdf main.tex
-      ls main.pdf
+      ls -la main.pdf
 
-      echo Tests passed!
+      echo "✅ Tutti i test passati!"
       '
