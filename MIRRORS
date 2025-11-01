@@ -27,4 +27,4 @@ TL_MIRROR_2023=https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2023/t
 TL_MIRROR_2024=https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2024/tlnet-final/
 
 # Current release in progress
-TL_MIRROR_2025=https://texlive.info/tlnet-archive/2025/05/01/tlnet/
+TL_MIRROR_2025=https://mirror.ctan.org/systems/texlive/tlnet/
