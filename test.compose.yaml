@@ -68,8 +68,8 @@ services:
       
       echo "=== STEP 2: Verifica connessione di rete ==="
       cat /etc/resolv.conf
-      ping -c 2 mirror.ctan.org || echo "Ping failed but continuing..."
-      nslookup mirror.ctan.org || echo "DNS lookup failed but continuing..."
+      ping -c 2 ctan.mirror.garr.it || echo "Ping failed but continuing..."
+      nslookup ctan.mirror.garr.it || echo "DNS lookup failed but continuing..."
       
       echo "=== STEP 3: Verifica tlmgr ==="
       which tlmgr
@@ -80,12 +80,12 @@ services:
       tlmgr option repository
       
       echo "=== STEP 5: Test download diretto ==="
-      wget --timeout=30 --tries=2 https://mirror.ctan.org/systems/texlive/tlnet/archive/latexmk.tar.xz -O /tmp/latexmk.tar.xz
+      wget --timeout=30 --tries=2 https://ctan.mirror.garr.it/mirrors/ctan/systems/texlive/tlnet/archive/latexmk.tar.xz -O /tmp/latexmk.tar.xz
       echo "wget exit code: $?"
       ls -la /tmp/latexmk.tar.xz || echo "File non scaricato"
       
       echo "=== STEP 6: Aggiorna repository ==="
-      tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet/
+      tlmgr option repository https://ctan.mirror.garr.it/mirrors/ctan/systems/texlive/tlnet/
       tlmgr option repository
       
       echo "=== STEP 7: Prova installazione latexmk ==="
