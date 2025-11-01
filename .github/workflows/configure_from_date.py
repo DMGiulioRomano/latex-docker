@@ -5,8 +5,7 @@ import urllib.request
 import re
 import os
 
-TL_MIRROR = 'https://www.texlive.info/tlnet-archive/{}/{}/{}/tlnet/'
-
+TL_MIRROR = 'https://mirror.ctan.org/systems/texlive/tlnet/'
 
 def github_env(variable, value):
     line = f'{variable}={value}'
