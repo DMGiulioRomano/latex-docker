@@ -2,7 +2,7 @@
 IMAGE_ID ?= DMGiulioRomano/latex-docker-ubuntu
 VERSION ?= latest
 
-TL_MIRROR ?= https://texlive.info/CTAN/systems/texlive/tlnet
+TL_MIRROR ?= https://ctan.mirror.garr.it/mirrors/ctan/systems/texlive/tlnet
 
 _default: all
 
