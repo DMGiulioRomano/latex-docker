@@ -107,7 +107,8 @@ jobs:
         run: |
           for image_id in $IMAGE_IDS; do
             for version in $VERSIONS; do
-              for suffix in "-minimal" "-basic" "-small" "-medium" "-full" "" ; do
+              #for suffix in "-minimal" "-basic" "-small" "-medium" "-full" "" ; do
+              for suffix in "-minimal" "-basic" ; do
                 image=${image_id}:${version}${suffix}
                 echo "Tagging and pushing ${image}..."
 
