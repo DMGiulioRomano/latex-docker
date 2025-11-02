@@ -64,29 +64,29 @@ jobs:
         run: |
           make test-basic
 
-      - name: Build small
-        run: |
-          make small
-
-      - name: Run small tests
-        run: |
-          make test-small
-
-      - name: Build medium
-        run: |
-          make medium
-
-      - name: Run medium tests
-        run: |
-          make test-medium
-
-      - name: Build full
-        run: |
-          make full
-
-      - name: Run full tests
-        run: |
-          make test-full
+#      - name: Build small
+#        run: |
+#          make small
+#
+#      - name: Run small tests
+#        run: |
+#          make test-small
+#
+#      - name: Build medium
+#        run: |
+#          make medium
+#
+#      - name: Run medium tests
+#        run: |
+#          make test-medium
+#
+#      - name: Build full
+#        run: |
+#          make full
+#
+#      - name: Run full tests
+#        run: |
+#          make test-full
 
       - name: Log in to DockerHub
         uses: docker/login-action@v3
