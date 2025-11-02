@@ -6,6 +6,7 @@
 
 
 [![GitHub Container Registry](https://img.shields.io/badge/ghcr.io-dmgiulioromano%2Flatex-docker-ubuntu-blue)](https://github.com/DMGiulioRomano/latex-docker-ubuntu/pkgs/container/latex-docker-ubuntu)
+
 [![DockerHub](https://img.shields.io/badge/docker.io-dmgiulioromano%2Flatex--docker--ubuntu-blue)](https://hub.docker.com/r/dmgiulioromano/latex-docker-ubuntu)
 
 
