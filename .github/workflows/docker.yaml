@@ -7,20 +7,6 @@ on:
     tags:
       - v*
   pull_request:
-  schedule:
-    - cron:  '12 4 * * *'
-    # devel build
-    - cron:  '13 4 * * *'
-  workflow_dispatch:
-    inputs:
-      date:
-        required: false
-        type: string
-        description: YYYYMMDD
-      push:
-        required: true
-        type: boolean
-        description: Push images
 
 jobs:
   release:
@@ -32,31 +18,7 @@ jobs:
         run: |
           IMAGE_ID=${{ github.repository_owner }}/latex-docker-ubuntu
 
-          if [[ "${{ github.event_name }}" == "schedule" && "${{ github.event.schedule }}" == "12 4 * * *" ]]; then
-            DATE=$(date '+%Y%m%d')
-            PUSH="true"
-            echo "Running scheduled build with date: $DATE"
-          elif [[ "${{ github.event_name }}" == "schedule" && "${{ github.event.schedule }}" == "13 4 * * *" ]]; then
-            PUSH="true"
-            VERSION=devel
-            MIRROR="https://texlive.info/CTAN/systems/texlive/tlnet"
-            echo "Running scheduled devel build"
-          elif [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-            if [[ -n "${{ github.event.inputs.date }}" ]]; then
-              DATE="${{ github.event.inputs.date }}"
-            else
-              DATE=$(date '+%Y%m%d')
-              echo "No date supplied, using today's date"
-            fi
-
-            if [[ "${{ github.event.inputs.push }}" == "true" ]]; then
-              PUSH="true"
-            else
-              PUSH="false"
-            fi
-
-            echo "Running manual build with date: $DATE, push: $PUSH"
-          elif [[ "${{ github.ref }}" == "refs/tags/v"* ]]; then
+          if [[ "${{ github.ref }}" == "refs/tags/v"* ]]; then
             PUSH="true"
             REF_NAME=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
             VERSION=$(echo $REF_NAME | sed -e 's/^v//')
@@ -74,22 +36,16 @@ jobs:
 
             echo "Running build for tag with version: $VERSION"
           else
-            DATE=$(date '+%Y%m%d')
             PUSH="false"
-            echo "Running test build with date: $DATE"
+            echo "Running test build"
           fi
-
-          # Will be re-tagged before push
-          echo "IMAGE_ID=image" | tee -a "$GITHUB_ENV"
-          echo "VERSION=version" | tee -a "$GITHUB_ENV"
-
-          echo "IMAGE_IDS=$IMAGE_ID ghcr.io/$IMAGE_ID" | tee -a "$GITHUB_ENV"
+          echo "IMAGE_ID=$IMAGE_ID" | tee -a "$GITHUB_ENV"
+          echo "IMAGE_IDS=docker.io/$IMAGE_ID ghcr.io/$IMAGE_ID" | tee -a "$GITHUB_ENV"
           echo "PUSH=$PUSH" | tee -a "$GITHUB_ENV"
           if [[ -n "$VERSION" ]]; then
             echo "TL_MIRROR=$MIRROR" | tee -a "$GITHUB_ENV"
             echo "VERSIONS=$VERSION" | tee -a "$GITHUB_ENV"
-          else
-            ./.github/workflows/configure_from_date.py "$DATE"
+            echo "VERSION=$VERSION" | tee -a "$GITHUB_ENV"
           fi
 
       - name: Build minimal
