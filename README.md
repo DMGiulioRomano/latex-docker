@@ -5,14 +5,15 @@
 [![GitHub release](https://img.shields.io/github/v/release/DMGiulioRomano/latex-docker-ubuntu)](https://github.com/DMGiulioRomano/latex-docker-ubuntu/releases)
 
 
-[![DockerHub](https://img.shields.io/badge/docker.io-kjarosh%2Flatex-blue)](https://hub.docker.com/r/kjarosh/latex)
-[![GitHub Container Registry](https://img.shields.io/badge/ghcr.io-kjarosh%2Flatex-blue)](https://github.com/users/kjarosh/packages/container/package/latex)
+[![GitHub Container Registry](https://img.shields.io/badge/ghcr.io-DMGiulioRomano%2Flatex-docker-ubuntu-blue)](https://github.com/DMGiulioRomano/latex-docker-ubuntu/pkgs/container/latex-docker-ubuntu)
+[![DockerHub](https://img.shields.io/badge/docker.io-dmgiulioromano%2Flatex--docker--ubuntu-blue)](https://hub.docker.com/r/dmgiulioromano/latex-docker-ubuntu)
 
-[![Docker Image Size (minimal)](https://img.shields.io/docker/image-size/kjarosh/latex/latest-minimal?label=minimal)](https://hub.docker.com/r/kjarosh/latex)
-[![Docker Image Size (basic)](https://img.shields.io/docker/image-size/kjarosh/latex/latest-basic?label=basic)](https://hub.docker.com/r/kjarosh/latex)
-[![Docker Image Size (small)](https://img.shields.io/docker/image-size/kjarosh/latex/latest-small?label=small)](https://hub.docker.com/r/kjarosh/latex)
-[![Docker Image Size (medium)](https://img.shields.io/docker/image-size/kjarosh/latex/latest-medium?label=medium)](https://hub.docker.com/r/kjarosh/latex)
-[![Docker Image Size (full)](https://img.shields.io/docker/image-size/kjarosh/latex/latest-full?label=full)](https://hub.docker.com/r/kjarosh/latex)
+
+[![Docker Image Size (minimal)](https://img.shields.io/docker/image-size/dmgiulioromano/latex-docker-ubuntu/minimal?label=minimal)](https://hub.docker.com/r/dmgiulioromano/latex-docker-ubuntu)
+[![Docker Image Size (small)](https://img.shields.io/docker/image-size/dmgiulioromano/latex-docker-ubuntu/small?label=small)](https://hub.docker.com/r/dmgiulioromano/latex-docker-ubuntu)
+[![Docker Image Size (medium)](https://img.shields.io/docker/image-size/dmgiulioromano/latex-docker-ubuntu/medium?label=medium)](https://hub.docker.com/r/dmgiulioromano/latex-docker-ubuntu)
+[![Docker Image Size (basic)](https://img.shields.io/docker/image-size/dmgiulioromano/latex-docker-ubuntu/basic?label=basic)](https://hub.docker.com/r/dmgiulioromano/latex-docker-ubuntu)
+[![Docker Image Size (full)](https://img.shields.io/docker/image-size/dmgiulioromano/latex-docker-ubuntu/full?label=full)](https://hub.docker.com/r/dmgiulioromano/latex-docker-ubuntu)
 
 This repository defines a set of images which may be used
 to run LaTeX in a container, for example in CI/CD.
