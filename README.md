@@ -1,8 +1,10 @@
 # LaTeX in Docker
 
-[![GitHub license](https://img.shields.io/github/license/kjarosh/latex-docker)](https://github.com/kjarosh/latex-docker/blob/main/LICENSE)
-[![GitHub build status](https://img.shields.io/github/actions/workflow/status/kjarosh/latex-docker/docker.yaml?branch=main)](https://github.com/kjarosh/latex-docker/actions)
-[![GitHub release](https://img.shields.io/github/v/release/kjarosh/latex-docker)](https://github.com/kjarosh/latex-docker/releases)
+[![GitHub license](https://img.shields.io/github/license/DMGiulioRomano/latex-docker-ubuntu)](https://github.com/DMGiulioRomano/latex-docker-ubuntu/blob/main/LICENSE)
+[![GitHub build status](https://img.shields.io/github/actions/workflow/status/DMGiulioRomano/latex-docker-ubuntu/docker.yaml?branch=main)](https://github.com/DMGiulioRomano/latex-docker-ubuntu/actions)
+[![GitHub release](https://img.shields.io/github/v/release/DMGiulioRomano/latex-docker-ubuntu)](https://github.com/DMGiulioRomano/latex-docker-ubuntu/releases)
+
+
 [![DockerHub](https://img.shields.io/badge/docker.io-kjarosh%2Flatex-blue)](https://hub.docker.com/r/kjarosh/latex)
 [![GitHub Container Registry](https://img.shields.io/badge/ghcr.io-kjarosh%2Flatex-blue)](https://github.com/users/kjarosh/packages/container/package/latex)
 
