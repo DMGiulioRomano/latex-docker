@@ -11,7 +11,7 @@
 [![Docker Image Size (basic)](https://img.shields.io/docker/image-size/dmgiulioromano/latex-docker-ubuntu/basic?label=basic)](https://hub.docker.com/r/dmgiulioromano/latex-docker-ubuntu)
 [![Docker Image Size (small)](https://img.shields.io/docker/image-size/dmgiulioromano/latex-docker-ubuntu/small?label=small)](https://hub.docker.com/r/dmgiulioromano/latex-docker-ubuntu)
 [![Docker Image Size (medium)](https://img.shields.io/docker/image-size/dmgiulioromano/latex-docker-ubuntu/medium?label=medium)](https://hub.docker.com/r/dmgiulioromano/latex-docker-ubuntu)
-[![Docker Image Size (full)](https://img.shields.io/docker/image-size/dmgiulioromano/latex-docker-ubuntu/full?label=full)](https://hub.docker.com/r/dmgiulioromano/latex-docker-ubuntu)
+[![Docker Image Size (full)](https://img.shields.io/docker/image-size/dmgiulioromano/latex-docker-ubuntu/2025.1-full?label=full)](https://hub.docker.com/r/dmgiulioromano/latex-docker-ubuntu/tags?name=2025.1-full)
 
 This repository defines a set of Docker images for running LaTeX in containers, optimized for CI/CD workflows and local development. Built on **Ubuntu 22.04 LTS**, these images provide a stable and reliable foundation for LaTeX compilation.
 
