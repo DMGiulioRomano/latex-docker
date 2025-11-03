@@ -21,11 +21,11 @@ If a package is missing, you can always use `tlmgr` to install it. Since the ima
 
 | Scheme  | Image                                              | Size     |
 |---------|---------------------------------------------------|----------|
-| minimal | `dmgiulioromano/latex-docker-ubuntu:latest-minimal` | ~150 MB  |
-| basic   | `dmgiulioromano/latex-docker-ubuntu:latest-basic`   | ~250 MB  |
-| small   | `dmgiulioromano/latex-docker-ubuntu:latest-small`   | ~400 MB  |
-| medium  | `dmgiulioromano/latex-docker-ubuntu:latest-medium`  | ~800 MB  |
-| full    | `dmgiulioromano/latex-docker-ubuntu:latest`         | ~3 GB    |
+| minimal | `dmgiulioromano/latex-docker-ubuntu:latest-minimal` | ~66 MB  |
+| basic   | `dmgiulioromano/latex-docker-ubuntu:latest-basic`   | ~103 MB  |
+| small   | `dmgiulioromano/latex-docker-ubuntu:latest-small`   | ~162 MB  |
+| medium  | `dmgiulioromano/latex-docker-ubuntu:latest-medium`  | ~500 MB  |
+| full    | `dmgiulioromano/latex-docker-ubuntu:latest`         | ~2.1 GB    |
 
 The images use a layered architecture where each variant builds upon the previous one. For example, `full` adds packages to `medium`, which extends `small`, and so on. This approach optimizes storage space and build efficiency.
 
