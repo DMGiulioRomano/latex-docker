@@ -123,15 +123,6 @@ Stable versions provide:
 | 2025            | `2025.1`      |
 | 2024            | `2024.1`      |
 
-### Development Versions
-
-Development versions are built automatically and include:
-
-1. **`devel`** - Latest development build (⚠️ **not recommended for production**)
-2. **`devel-<TL_VERSION>-<DATE>`** - Historic builds with working `tlmgr`
-3. **`devel-<TL_VERSION>`** - Latest build for specific TeX Live version
-4. **`devel-any-<DATE>`** - Build from specific date without TeX Live version
-
 ## CI/CD Integration
 
 ### GitHub Actions
@@ -176,21 +167,6 @@ compile_latex:
     expire_in: 1 week
 ```
 
-### Docker Compose
-
-For local development with hot reload:
-
-```yaml
-version: '3.8'
-services:
-  latex:
-    image: dmgiulioromano/latex-docker-ubuntu:latest
-    volumes:
-      - .:/workspace
-    working_dir: /workspace
-    command: latexmk -pdf -pvc -outdir=out main.tex
-    user: "${UID}:${GID}"
-```
 
 ## Image Variants Comparison
 
@@ -237,7 +213,7 @@ COPY . /workspace
 WORKDIR /workspace
 RUN latexmk -pdf main.tex
 
-FROM alpine:latest
+FROM ubuntu:latest
 COPY --from=builder /workspace/main.pdf /output/
 ```
 
